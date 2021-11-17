@@ -1,0 +1,18 @@
+.main {
+    width: 70vw;
+    border: 1px #d8d8d8 solid;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+
+    div:nth-child(1) {
+        padding: 10px;
+        display: flex;
+        justify-content: right;
+    }
+
+    textarea {
+        flex-grow: 1;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,13 @@
+<ng-container *ngIf="componentType === 'menu'; else item">
+    <div class="menu">
+        <button>Tag</button>
+        <input type="text" placeholder="All Notes">
+        <button>Add</button>
+    </div>
+</ng-container>
+<ng-template #item>
+    <div class="list-item" (click)="click()">
+        <label>{{ note?.title }}</label>
+        <label>{{ note?.contents }}</label>
+    </div>
+</ng-template>

@@ -1,0 +1,9 @@
+<div class="main">
+  <div class="body">
+    <app-sidebar [noteList]="notesList" 
+      (currentNote)="viewExistingNote($event)"></app-sidebar>
+    <app-mainbar (triggerUpdate)="updateList()"
+      [noteContent]="currentSelectedNote.contents"
+      [noteTitle]="currentSelectedNote.title"></app-mainbar>
+  </div>
+</div>
