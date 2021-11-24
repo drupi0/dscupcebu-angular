@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NoteModel } from 'src/models/note.interface';
 
 @Component({
@@ -6,7 +6,7 @@ import { NoteModel } from 'src/models/note.interface';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   noteList: NoteModel[] = [];
@@ -17,6 +17,15 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("INITIALIZED");
+  }
+
+  ngOnChanges(change: SimpleChanges): void {
+    console.log(change);
+  }
+
+  ngOnDestroy() {
+    console.log("DESTROYED");
   }
 
   viewNote(value: NoteModel) {

@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main p-3 pt-4">
     <app-list-item [componentType]="'menu'"></app-list-item>
     <app-list-item *ngFor="let item of noteList" 
         [note]="item" (viewAction)="viewNote($event)"></app-list-item>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NoteModel } from 'src/models/note.interface';
+import { TestService } from '../test.service';
 
 @Component({
   selector: 'app-mainbar',
@@ -9,9 +10,12 @@ import { NoteModel } from 'src/models/note.interface';
 export class MainbarComponent implements OnInit {
 
   @Output()
-  triggerUpdate: EventEmitter<boolean> = new EventEmitter();
+  triggerUpdate: EventEmitter<NoteModel> = new EventEmitter();
 
-  constructor() { }
+  @Output()
+  stringUpdate: EventEmitter<any> = new EventEmitter();
+
+  constructor(public testAPI: TestService) { }
 
   @Input()
   noteContent: string = "";
@@ -30,22 +34,22 @@ export class MainbarComponent implements OnInit {
       contents: this.noteContent
     }
 
-    const notesStr = localStorage.getItem("notes");
-    let noteItems: NoteModel[] = [];
+    // const notesStr = localStorage.getItem("notes");
+    // let noteItems: NoteModel[] = [];
 
-    if(notesStr) {
-      noteItems = JSON.parse(notesStr);
-    }
+    // if(notesStr) {
+    //   noteItems = JSON.parse(notesStr);
+    // }
 
-    noteItems.push(noteItem);
+    // noteItems.push(noteItem);
 
-    localStorage.setItem("notes", JSON.stringify(noteItems));
+    // localStorage.setItem("notes", JSON.stringify(noteItems));
 
-    this.triggerUpdate.emit(true);
-
-    this.noteContent = "";
-    this.noteTitle = "";
-
+    this.testAPI.postContents(noteItem).subscribe(data => {
+      this.triggerUpdate.emit(noteItem);
+      this.noteContent = "";
+      this.noteTitle = "";
+    })
   }
 
 }

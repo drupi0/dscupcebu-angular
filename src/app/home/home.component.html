@@ -1,0 +1,12 @@
+<div class="main">
+    <button routerLink="/login" class="btn btn-primary">Log Out</button>
+    <div class="body">
+        <app-sidebar [noteList]="notesList" 
+        (currentNote)="viewExistingNote($event)"></app-sidebar>
+
+        <app-mainbar (triggerUpdate)="updateList($event)"
+        [noteContent]="currentSelectedNote.contents"
+        [noteTitle]="currentSelectedNote.title"></app-mainbar>
+    </div>
+</div>
+  
